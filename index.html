@@ -3,1068 +3,1215 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Опитування професійного вигорання стоматологів</title>
-    <meta name="description" content="Конфіденційне анонімне опитування за Copenhagen Burnout Inventory для вивчення професійного вигорання серед стоматологів України">
-    <meta name="keywords" content="професійне вигорання, стоматологи, Copenhagen Burnout Inventory, психологічне здоров'я, анонімне опитування">
+    <title>Опитування професійного вигорання</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
+        
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
             line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
         }
-
-        .container {
-            max-width: 800px;
+        
+        .survey-container {
+            max-width: 900px;
             margin: 0 auto;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            padding: 40px;
-        }
-
-        h1 {
-            color: #667eea;
-            text-align: center;
-            margin-bottom: 10px;
-            font-size: 2em;
-        }
-
-        .subtitle {
-            text-align: center;
-            color: #666;
-            margin-bottom: 30px;
-            font-size: 1.1em;
-        }
-
-        .intro {
-            background: #f8f9fa;
             padding: 20px;
-            border-radius: 10px;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            color: #2c3e50;
+            font-size: 28px;
+            margin-bottom: 20px;
+            text-align: center;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 15px;
+        }
+        
+        .intro-text {
+            background: #e8f4f8;
+            padding: 20px;
+            border-radius: 8px;
             margin-bottom: 30px;
-            border-left: 4px solid #667eea;
+            border-left: 4px solid #3498db;
         }
-
-        .intro h3 {
-            color: #667eea;
-            margin-bottom: 10px;
+        
+        .consent-section {
+            background: #fff9e6;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border-left: 4px solid #f39c12;
         }
-
-        .intro ul {
-            margin-left: 20px;
-            color: #555;
+        
+        .consent-checkbox {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-top: 15px;
         }
-
-        .intro li {
-            margin: 5px 0;
+        
+        .consent-checkbox input[type="checkbox"] {
+            margin-top: 5px;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
         }
-
+        
+        .consent-checkbox label {
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
         .section {
             margin-bottom: 40px;
+            padding: 25px;
+            background: #fafafa;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
         }
-
+        
         .section-title {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 15px 20px;
-            border-radius: 10px;
+            color: #2980b9;
+            font-size: 22px;
             margin-bottom: 20px;
-            font-size: 1.3em;
-            text-align: center;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #3498db;
         }
-
-        .question {
-            background: #f8f9fa;
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 10px;
-            border-left: 4px solid #667eea;
+        
+        .question-group {
+            margin-bottom: 25px;
+            padding: 15px;
+            background: white;
+            border-radius: 6px;
+            border-left: 3px solid #3498db;
         }
-
-        .question-text {
+        
+        .question-label {
             font-weight: 600;
-            color: #333;
-            margin-bottom: 15px;
-            font-size: 1.05em;
+            margin-bottom: 12px;
+            display: block;
+            color: #2c3e50;
+            font-size: 16px;
         }
-
-        .options {
+        
+        .radio-group, .select-group {
             display: flex;
             flex-direction: column;
             gap: 10px;
         }
-
-        .option {
+        
+        .radio-option {
             display: flex;
             align-items: center;
-            padding: 12px;
-            background: white;
-            border-radius: 8px;
+            gap: 10px;
+            padding: 10px;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+        
+        .radio-option:hover {
+            background: #f0f8ff;
+        }
+        
+        .radio-option input[type="radio"] {
+            width: 18px;
+            height: 18px;
             cursor: pointer;
-            transition: all 0.3s;
-            border: 2px solid transparent;
         }
-
-        .option:hover {
-            background: #e8eaf6;
-            border-color: #667eea;
-            transform: translateX(5px);
-        }
-
-        .option input[type="radio"] {
-            margin-right: 12px;
-            width: 20px;
-            height: 20px;
-            cursor: pointer;
-            accent-color: #667eea;
-        }
-
-        .option label {
+        
+        .radio-option label {
             cursor: pointer;
             flex: 1;
-            color: #555;
         }
-
-        .demographics {
-            background: #fff3cd;
-            padding: 25px;
-            border-radius: 10px;
-            margin-bottom: 30px;
-            border-left: 4px solid #ffc107;
-        }
-
-        .demographics h3 {
-            color: #856404;
-            margin-bottom: 15px;
-        }
-
-        .demo-group {
-            margin-bottom: 20px;
-        }
-
-        .demo-group label {
-            display: block;
-            font-weight: 600;
-            color: #555;
-            margin-bottom: 8px;
-        }
-
-        .demo-group input,
-        .demo-group select {
+        
+        select, input[type="number"] {
             width: 100%;
             padding: 12px;
             border: 2px solid #ddd;
-            border-radius: 8px;
-            font-size: 1em;
+            border-radius: 6px;
+            font-size: 16px;
             transition: border-color 0.3s;
         }
-
-        .demo-group input:focus,
-        .demo-group select:focus {
+        
+        select:focus, input[type="number"]:focus {
             outline: none;
-            border-color: #667eea;
+            border-color: #3498db;
         }
-
+        
+        .scale-table {
+            width: 100%;
+            margin-top: 15px;
+            background: white;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .scale-question {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f9f9f9;
+            border-radius: 6px;
+        }
+        
+        .scale-question-text {
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+        
+        .scale-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+        }
+        
+        .scale-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px;
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            transition: all 0.3s;
+        }
+        
+        .scale-option:hover {
+            border-color: #3498db;
+            background: #f0f8ff;
+        }
+        
+        .scale-option input[type="radio"]:checked + label {
+            font-weight: bold;
+        }
+        
+        .scale-option input[type="radio"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+        
+        .scale-option label {
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
         .submit-btn {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #27ae60;
             color: white;
             padding: 15px 40px;
             border: none;
-            border-radius: 10px;
-            font-size: 1.2em;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
             cursor: pointer;
             width: 100%;
-            transition: transform 0.3s, box-shadow 0.3s;
-            font-weight: 600;
-        }
-
-        .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
-        }
-
-        .submit-btn:disabled {
-            background: #ccc;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        .results {
-            display: none;
-            background: #d4edda;
-            padding: 30px;
-            border-radius: 10px;
+            transition: background 0.3s;
             margin-top: 30px;
-            border-left: 4px solid #28a745;
         }
-
-        .results h2 {
-            color: #155724;
-            margin-bottom: 20px;
-            text-align: center;
+        
+        .submit-btn:hover {
+            background: #229954;
         }
-
-        .result-item {
-            background: white;
-            padding: 15px;
-            margin: 15px 0;
-            border-radius: 8px;
-            border-left: 4px solid #28a745;
+        
+        .submit-btn:disabled {
+            background: #95a5a6;
+            cursor: not-allowed;
         }
-
-        .result-item h4 {
-            color: #155724;
-            margin-bottom: 8px;
-        }
-
-        .score {
-            font-size: 2em;
+        
+        .error-message {
+            color: #e74c3c;
             font-weight: bold;
-            color: #28a745;
-            display: inline-block;
-            margin-right: 10px;
-        }
-
-        .interpretation {
-            color: #666;
-            font-style: italic;
-        }
-
-        .error {
-            background: #f8d7da;
-            color: #721c24;
             padding: 15px;
-            border-radius: 8px;
-            margin: 20px 0;
-            border-left: 4px solid #f5c6cb;
+            background: #ffe6e6;
+            border-radius: 6px;
+            margin-top: 10px;
             display: none;
         }
-
-        .progress {
-            background: #e9ecef;
-            height: 10px;
-            border-radius: 5px;
-            margin-bottom: 20px;
-            overflow: hidden;
-        }
-
-        .progress-bar {
+        
+        .results-container {
+            display: none;
+            margin-top: 30px;
+            padding: 30px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            height: 100%;
-            width: 0%;
-            transition: width 0.3s;
+            border-radius: 12px;
+            color: white;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
         }
-
-        @media (max-width: 600px) {
-            .container {
-                padding: 20px;
-            }
-
-            h1 {
-                font-size: 1.5em;
-            }
-
-            .section-title {
-                font-size: 1.1em;
-                padding: 12px 15px;
-            }
-
-            .question {
+        
+        .results-title {
+            font-size: 28px;
+            margin-bottom: 25px;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .result-item {
+            background: rgba(255,255,255,0.15);
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .result-category {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .result-score {
+            font-size: 32px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        
+        .result-interpretation {
+            font-size: 16px;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid rgba(255,255,255,0.3);
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(255,255,255,0.3);
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: white;
+            border-radius: 10px;
+            transition: width 0.5s ease;
+        }
+        
+        @media (max-width: 768px) {
+            .survey-container {
                 padding: 15px;
             }
+            
+            h1 {
+                font-size: 24px;
+            }
+            
+            .scale-options {
+                grid-template-columns: 1fr;
+            }
         }
-
-        .footer {
-            text-align: center;
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 2px solid #e9ecef;
-            color: #666;
-            font-size: 0.9em;
+        
+        .required {
+            color: #e74c3c;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Опитування професійного вигорання стоматологів</h1>
-        <p class="subtitle">Copenhagen Burnout Inventory (CBI)</p>
 
-        <div class="intro">
-            <h3>Шановні колеги!</h3>
-            <p>Запрошуємо вас взяти участь у науковому дослідженні професійного вигорання серед стоматологів України.</p>
-            <ul>
-                <li>✅ Опитування повністю <strong>анонімне</strong></li>
-                <li>✅ Займе приблизно <strong>7-10 хвилин</strong></li>
-                <li>✅ Ви отримаєте <strong>миттєві результати</strong> після завершення</li>
-                <li>✅ Дані будуть використані для <strong>наукової публікації</strong></li>
-            </ul>
+<div class="survey-container">
+    <h1>Професійне вигорання лікарів-стоматологів різних вікових категорій: дослідження за Copenhagen Burnout Inventory</h1>
+    
+    <div class="intro-text">
+        <p><strong>Копенгагенська шкала вигорання (СВІ)</strong> вимірює рівень вигорання у трьох сферах: особисте вигорання, робоче вигорання та вигорання пов'язане з клієнтами.</p>
+        <p style="margin-top: 10px;">Уважно прочитайте кожне запитання та виберіть відповідь, яка найкраще відображає ваші відчуття. Кожна відповідь має відповідне відсоткове значення, яке буде використано для розрахунку вашого балу. Будьте чесними та обирайте варіант, який найточніше описує ваш стан.</p>
+    </div>
+    
+    <form id="burnoutSurvey">
+        <!-- Інформована згода -->
+        <div class="consent-section">
+            <h3 style="margin-bottom: 15px;">Інформована згода</h3>
+            <div class="consent-checkbox">
+                <input type="checkbox" id="consent" name="consent" required>
+                <label for="consent">
+                    Я ознайомлений(а) з метою цього дослідження, яке присвячене аналізу професійної діяльності стоматологів та впливу воєнного стану на роботу, а також вивченню рівня професійного вигорання за допомогою Копенгагенської шкали (СВІ) у трьох сферах: особисте вигорання, робоче вигорання та вигорання, пов'язане з клієнтами. Я погоджуюсь добровільно взяти участь. Мої відповіді будуть анонімними і використовуватимуться лише для наукового аналізу та дослідження. Я розумію, що можу відмовитися від участі у будь-який момент без будь-яких наслідків.
+                    <span class="required">*</span>
+                </label>
+            </div>
         </div>
-
-        <div class="progress">
-            <div class="progress-bar" id="progressBar"></div>
+        
+        <!-- Загальні питання -->
+        <div class="section">
+            <h2 class="section-title">Загальні питання</h2>
+            
+            <div class="question-group">
+                <label class="question-label">Вкажіть ваш вік <span class="required">*</span></label>
+                <input type="number" name="age" min="18" max="100" required>
+            </div>
+            
+            <div class="question-group">
+                <label class="question-label">Гендерна ідентичність <span class="required">*</span></label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" id="gender1" name="gender" value="Чоловік" required>
+                        <label for="gender1">Чоловік</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="gender2" name="gender" value="Жінка">
+                        <label for="gender2">Жінка</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="gender3" name="gender" value="Небінарна особа/інша ідентичність">
+                        <label for="gender3">Небінарна особа/інша ідентичність</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question-group">
+                <label class="question-label" for="specialty">Вкажіть вашу основну професійну спеціальність <span class="required">*</span></label>
+                <select name="specialty" id="specialty" required>
+                    <option value="">Оберіть спеціальність...</option>
+                    <option value="Стоматологія загальної практики">Стоматологія загальної практики</option>
+                    <option value="Терапевтична стоматологія">Терапевтична стоматологія</option>
+                    <option value="Хірургічна стоматологія">Хірургічна стоматологія</option>
+                    <option value="Пародонтологія">Пародонтологія</option>
+                    <option value="Ортодонтія">Ортодонтія</option>
+                    <option value="Ортопедична стоматологія">Ортопедична стоматологія</option>
+                    <option value="Щелепно-лицева хірургія">Щелепно-лицева хірургія</option>
+                    <option value="Дитяча стоматологія">Дитяча стоматологія</option>
+                    <option value="Організація і управління">Організація і управління</option>
+                </select>
+            </div>
+            
+            <div class="question-group">
+                <label class="question-label" for="experience">Стаж роботи за спеціальністю <span class="required">*</span></label>
+                <select name="experience" id="experience" required>
+                    <option value="">Оберіть стаж...</option>
+                    <option value="Навчаюсь/не працюю">Навчаюсь/не працюю</option>
+                    <option value="Менше 1 року">Менше 1 року</option>
+                    <option value="1-5 років">1-5 років</option>
+                    <option value="6-10 років">6-10 років</option>
+                    <option value="Понад 10 років">Понад 10 років</option>
+                </select>
+            </div>
+            
+            <div class="question-group">
+                <label class="question-label" for="workload">Робоче навантаження <span class="required">*</span></label>
+                <select name="workload" id="workload" required>
+                    <option value="">Оберіть навантаження...</option>
+                    <option value="До 20 годин на тиждень">До 20 годин на тиждень</option>
+                    <option value="21-40 годин на тиждень">21-40 годин на тиждень</option>
+                    <option value="41-60 годин на тиждень">41-60 годин на тиждень</option>
+                    <option value="Понад 60 годин на тиждень">Понад 60 годин на тиждень</option>
+                </select>
+            </div>
+            
+            <div class="question-group">
+                <label class="question-label">Починаючи з 2022 р. проживаю в Україні <span class="required">*</span></label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" id="ukraine1" name="ukraine" value="Так" required>
+                        <label for="ukraine1">Так</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="ukraine2" name="ukraine" value="Ні">
+                        <label for="ukraine2">Ні</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="ukraine3" name="ukraine" value="Інше">
+                        <label for="ukraine3">Інше</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question-group">
+                <label class="question-label">Чи впливають виклики в умовах воєнного стану на вашу професійну діяльність? <span class="required">*</span></label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" id="war1" name="war_impact" value="Так" required>
+                        <label for="war1">Так</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="war2" name="war_impact" value="Ні">
+                        <label for="war2">Ні</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="war3" name="war_impact" value="Інше">
+                        <label for="war3">Інше</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question-group">
+                <label class="question-label">Чи бажаєте ви змінити професію? <span class="required">*</span></label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" id="change1" name="change_profession" value="Так" required>
+                        <label for="change1">Так</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="change2" name="change_profession" value="Ні">
+                        <label for="change2">Ні</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question-group">
+                <label class="question-label">Чи виникали у вас думки про зміну професії? <span class="required">*</span></label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" id="thoughts1" name="thoughts_change" value="Так" required>
+                        <label for="thoughts1">Так</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="thoughts2" name="thoughts_change" value="Ні">
+                        <label for="thoughts2">Ні</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question-group">
+                <label class="question-label">Чи задоволені ви своїм професійним напрямом діяльності? <span class="required">*</span></label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" id="satisfied1" name="satisfied" value="Так" required>
+                        <label for="satisfied1">Так</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="satisfied2" name="satisfied" value="Ні">
+                        <label for="satisfied2">Ні</label>
+                    </div>
+                </div>
+            </div>
         </div>
-
-        <form id="surveyForm">
-            <!-- ЗАГАЛЬНА ІНФОРМАЦІЯ -->
-            <div class="demographics">
-                <h3>Загальна інформація (необов'язково)</h3>
-                
-                <div class="demo-group">
-                    <label for="age">Вік:</label>
-                    <input type="number" id="age" name="age" min="20" max="80" placeholder="Введіть ваш вік">
-                </div>
-
-                <div class="demo-group">
-                    <label for="gender">Стать:</label>
-                    <select id="gender" name="gender">
-                        <option value="">Оберіть</option>
-                        <option value="Чоловіча">Чоловіча</option>
-                        <option value="Жіноча">Жіноча</option>
-                        <option value="Не вказувати">Не вказувати</option>
-                    </select>
-                </div>
-
-                <div class="demo-group">
-                    <label for="experience">Стаж роботи (років):</label>
-                    <input type="number" id="experience" name="experience" min="0" max="60" placeholder="Введіть стаж роботи">
-                </div>
-
-                <div class="demo-group">
-                    <label for="specialization">Спеціалізація:</label>
-                    <select id="specialization" name="specialization">
-                        <option value="">Оберіть</option>
-                        <option value="Терапевт">Терапевт</option>
-                        <option value="Хірург">Хірург</option>
-                        <option value="Ортопед">Ортопед</option>
-                        <option value="Ортодонт">Ортодонт</option>
-                        <option value="Пародонтолог">Пародонтолог</option>
-                        <option value="Дитячий стоматолог">Дитячий стоматолог</option>
-                        <option value="Загальна практика">Загальна практика</option>
-                        <option value="Інше">Інше</option>
-                    </select>
-                </div>
-
-                <div class="demo-group">
-                    <label for="workplace">Місце роботи:</label>
-                    <select id="workplace" name="workplace">
-                        <option value="">Оберіть</option>
-                        <option value="Приватна клініка">Приватна клініка</option>
-                        <option value="Державна клініка">Державна клініка</option>
-                        <option value="Власна практика">Власна практика</option>
-                        <option value="Кілька місць">Кілька місць</option>
-                    </select>
-                </div>
-
-                <div class="demo-group">
-                    <label for="hoursPerWeek">Години роботи на тиждень:</label>
-                    <input type="number" id="hoursPerWeek" name="hoursPerWeek" min="0" max="120" placeholder="Приблизна кількість годин">
-                </div>
-
-                <div class="demo-group">
-                    <label for="city">Місто:</label>
-                    <input type="text" id="city" name="city" placeholder="Введіть місто">
-                </div>
-
-                <div class="demo-group">
-                    <label for="region">Область:</label>
-                    <input type="text" id="region" name="region" placeholder="Введіть область">
-                </div>
-
-                <div class="demo-group">
-                    <label for="maritalStatus">Сімейний стан:</label>
-                    <select id="maritalStatus" name="maritalStatus">
-                        <option value="">Оберіть</option>
-                        <option value="Одружений/заміжня">Одружений/заміжня</option>
-                        <option value="Не одружений/не заміжня">Не одружений/не заміжня</option>
-                        <option value="У стосунках">У стосунках</option>
-                        <option value="Розлучений/розлучена">Розлучений/розлучена</option>
-                    </select>
-                </div>
-
-                <div class="demo-group">
-                    <label for="children">Діти (кількість):</label>
-                    <input type="number" id="children" name="children" min="0" max="20" placeholder="Кількість дітей">
-                </div>
-            </div>
-
-            <!-- ОСОБИСТЕ ВИГОРАННЯ (Personal Burnout) -->
-            <div class="section">
-                <div class="section-title">Розділ 1: Особисте вигорання</div>
-
-                <div class="question">
-                    <div class="question-text">1. Як часто ви відчуваєте втому?</div>
-                    <div class="options">
-                        <div class="option">
-                            <input type="radio" id="q1_0" name="q1" value="0" required>
-                            <label for="q1_0">Ніколи/майже ніколи</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="q1_25" name="q1" value="25">
-                            <label for="q1_25">Рідко</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="q1_50" name="q1" value="50">
-                            <label for="q1_50">Іноді</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="q1_75" name="q1" value="75">
-                            <label for="q1_75">Часто</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="q1_100" name="q1" value="100">
-                            <label for="q1_100">Завжди</label>
-                        </div>
+        
+        <!-- Особисте вигорання -->
+        <div class="section">
+            <h2 class="section-title">Особисте вигорання</h2>
+            
+            <div class="scale-question">
+                <div class="scale-question-text">1. Як часто ви відчуваєте втому? <span class="required">*</span></div>
+                <div class="scale-options">
+                    <div class="scale-option">
+                        <input type="radio" id="pb1_0" name="personal_burnout_1" value="0" required>
+                        <label for="pb1_0">0% Ніколи/Майже ніколи</label>
                     </div>
-                </div>
-
-                <div class="question">
-                    <div class="question-text">2. Як часто ви фізично виснажені?</div>
-                    <div class="options">
-                        <div class="option">
-                            <input type="radio" id="q2_0" name="q2" value="0" required>
-                            <label for="q2_0">Ніколи/майже ніколи</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="q2_25" name="q2" value="25">
-                            <label for="q2_25">Рідко</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="q2_50" name="q2" value="50">
-                            <label for="q2_50">Іноді</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="q2_75" name="q2" value="75">
-                            <label for="q2_75">Часто</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="q2_100" name="q2" value="100">
-                            <label for="q2_100">Завжди</label>
-                        </div>
+                    <div class="scale-option">
+                        <input type="radio" id="pb1_25" name="personal_burnout_1" value="25">
+                        <label for="pb1_25">25% Рідко</label>
                     </div>
-                </div>
-
-                <div class="question">
-                    <div class="question-text">3. Як часто ви емоційно виснажені?</div>
-                    <div class="options">
-                        <div class="option">
-                            <input type="radio" id="q3_0" name="q3" value="0" required>
-                            <label for="q3_0">Ніколи/майже ніколи</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="q3_25" name="q3" value="25">
-                            <label for="q3_25">Рідко</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="q3_50" name="q3" value="50">
-                            <label for="q3_50">Іноді</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="q3_75" name="q3" value="75">
-                            <label for="q3_75">Часто</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="q3_100" name="q3" value="100">
-                            <label for="q3_100">Завжди</label>
-                        </div>
+                    <div class="scale-option">
+                        <input type="radio" id="pb1_50" name="personal_burnout_1" value="50">
+                        <label for="pb1_50">50% Іноді</label>
                     </div>
-                </div>
-
-                <div class="question">
-                    <div class="question-text">4. Як часто ви думаєте: "Я не можу більше"?</div>
-                    <div class="options">
-                        <div class="option">
-                            <input type="radio" id="q4_0" name="q4" value="0" required>
-                            <label for="q4_0">Ніколи/майже ніколи</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="q4_25" name="q4" value="25">
-                            <label for="q4_25">Рідко</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="q4_50" name="q4" value="50">
-                            <label for="q4_50">Іноді</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="q4_75" name="q4" value="75">
-                            <label for="q4_75">Часто</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="q4_100" name="q4" value="100">
-                            <label for="q4_100">Завжди</label>
-                        </div>
+                    <div class="scale-option">
+                        <input type="radio" id="pb1_75" name="personal_burnout_1" value="75">
+                        <label for="pb1_75">75% Часто</label>
                     </div>
-                </div>
-
-                <div class="question">
-                    <div class="question-text">5. Як часто ви відчуваєте себе слабким і схильним до хвороб?</div>
-                    <div class="options">
-                        <div class="option">
-                            <input type="radio" id="q5_0" name="q5" value="0" required>
-                            <label for="q5_0">Ніколи/майже ніколи</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="q5_25" name="q5" value="25">
-                            <label for="q5_25">Рідко</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="q5_50" name="q5" value="50">
-                            <label for="q5_50">Іноді</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="q5_75" name="q5" value="75">
-                            <label for="q5_75">Часто</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="q5_100" name="q5" value="100">
-                            <label for="q5_100">Завжди</label>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="question">
-                    <div class="question-text">6. Чи виснажені ви наприкінці робочого дня?</div>
-                    <div class="options">
-                        <div class="option">
-                            <input type="radio" id="q6_0" name="q6" value="0" required>
-                            <label for="q6_0">Дуже малою мірою</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="q6_25" name="q6" value="25">
-                            <label for="q6_25">Малою мірою</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="q6_50" name="q6" value="50">
-                            <label for="q6_50">Певною мірою</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="q6_75" name="q6" value="75">
-                            <label for="q6_75">Значною мірою</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="q6_100" name="q6" value="100">
-                            <label for="q6_100">Дуже великою мірою</label>
-                        </div>
+                    <div class="scale-option">
+                        <input type="radio" id="pb1_100" name="personal_burnout_1" value="100">
+                        <label for="pb1_100">100% Завжди</label>
                     </div>
                 </div>
             </div>
-
-            <!-- РОБОЧЕ ВИГОРАННЯ (Work-related Burnout) -->
-            <div class="section">
-                <div class="section-title">Розділ 2: Робоче вигорання</div>
-
-                <div class="question">
-                    <div class="question-text">7. Чи виснажує вас ваша робота?</div>
-                    <div class="options">
-                        <div class="option">
-                            <input type="radio" id="q7_0" name="q7" value="0" required>
-                            <label for="q7_0">Дуже малою мірою</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="q7_25" name="q7" value="25">
-                            <label for="q7_25">Малою мірою</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="q7_50" name="q7" value="50">
-                            <label for="q7_50">Певною мірою</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="q7_75" name="q7" value="75">
-                            <label for="q7_75">Значною мірою</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="q7_100" name="q7" value="100">
-                            <label for="q7_100">Дуже великою мірою</label>
-                        </div>
+            
+            <div class="scale-question">
+                <div class="scale-question-text">2. Як часто ви фізично виснажені? <span class="required">*</span></div>
+                <div class="scale-options">
+                    <div class="scale-option">
+                        <input type="radio" id="pb2_0" name="personal_burnout_2" value="0" required>
+                        <label for="pb2_0">0% Ніколи/Майже ніколи</label>
                     </div>
-                </div>
-
-                <div class="question">
-                    <div class="question-text">8. Чи відчуваєте ви себе виснаженим вранці при думці про ще один робочий день?</div>
-                    <div class="options">
-                        <div class="option">
-                            <input type="radio" id="q8_0" name="q8" value="0" required>
-                            <label for="q8_0">Дуже малою мірою</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="q8_25" name="q8" value="25">
-                            <label for="q8_25">Малою мірою</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="q8_50" name="q8" value="50">
-                            <label for="q8_50">Певною мірою</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="q8_75" name="q8" value="75">
-                            <label for="q8_75">Значною мірою</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="q8_100" name="q8" value="100">
-                            <label for="q8_100">Дуже великою мірою</label>
-                        </div>
+                    <div class="scale-option">
+                        <input type="radio" id="pb2_25" name="personal_burnout_2" value="25">
+                        <label for="pb2_25">25% Рідко</label>
                     </div>
-                </div>
-
-                <div class="question">
-                    <div class="question-text">9. Чи відчуваєте ви, що кожна робоча година виснажлива для вас?</div>
-                    <div class="options">
-                        <div class="option">
-                            <input type="radio" id="q9_0" name="q9" value="0" required>
-                            <label for="q9_0">Дуже малою мірою</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="q9_25" name="q9" value="25">
-                            <label for="q9_25">Малою мірою</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="q9_50" name="q9" value="50">
-                            <label for="q9_50">Певною мірою</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="q9_75" name="q9" value="75">
-                            <label for="q9_75">Значною мірою</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="q9_100" name="q9" value="100">
-                            <label for="q9_100">Дуже великою мірою</label>
-                        </div>
+                    <div class="scale-option">
+                        <input type="radio" id="pb2_50" name="personal_burnout_2" value="50">
+                        <label for="pb2_50">50% Іноді</label>
                     </div>
-                </div>
-
-                <div class="question">
-                    <div class="question-text">10. Чи маєте ви достатньо енергії для родини та друзів у вільний час?</div>
-                    <div class="options">
-                        <div class="option">
-                            <input type="radio" id="q10_100" name="q10" value="100" required>
-                            <label for="q10_100">Завжди</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="q10_75" name="q10" value="75">
-                            <label for="q10_75">Часто</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="q10_50" name="q10" value="50">
-                            <label for="q10_50">Іноді</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="q10_25" name="q10" value="25">
-                            <label for="q10_25">Рідко</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="q10_0" name="q10" value="0">
-                            <label for="q10_0">Ніколи/майже ніколи</label>
-                        </div>
+                    <div class="scale-option">
+                        <input type="radio" id="pb2_75" name="personal_burnout_2" value="75">
+                        <label for="pb2_75">75% Часто</label>
                     </div>
-                </div>
-
-                <div class="question">
-                    <div class="question-text">11. Чи є ваша робота емоційно виснажливою?</div>
-                    <div class="options">
-                        <div class="option">
-                            <input type="radio" id="q11_0" name="q11" value="0" required>
-                            <label for="q11_0">Дуже малою мірою</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="q11_25" name="q11" value="25">
-                            <label for="q11_25">Малою мірою</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="q11_50" name="q11" value="50">
-                            <label for="q11_50">Певною мірою</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="q11_75" name="q11" value="75">
-                            <label for="q11_75">Значною мірою</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="q11_100" name="q11" value="100">
-                            <label for="q11_100">Дуже великою мірою</label>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="question">
-                    <div class="question-text">12. Чи розчаровує вас ваша робота?</div>
-                    <div class="options">
-                        <div class="option">
-                            <input type="radio" id="q12_0" name="q12" value="0" required>
-                            <label for="q12_0">Дуже малою мірою</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="q12_25" name="q12" value="25">
-                            <label for="q12_25">Малою мірою</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="q12_50" name="q12" value="50">
-                            <label for="q12_50">Певною мірою</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="q12_75" name="q12" value="75">
-                            <label for="q12_75">Значною мірою</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="q12_100" name="q12" value="100">
-                            <label for="q12_100">Дуже великою мірою</label>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="question">
-                    <div class="question-text">13. Чи відчуваєте ви себе виснаженим через вашу роботу?</div>
-                    <div class="options">
-                        <div class="option">
-                            <input type="radio" id="q13_0" name="q13" value="0" required>
-                            <label for="q13_0">Дуже малою мірою</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="q13_25" name="q13" value="25">
-                            <label for="q13_25">Малою мірою</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="q13_50" name="q13" value="50">
-                            <label for="q13_50">Певною мірою</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="q13_75" name="q13" value="75">
-                            <label for="q13_75">Значною мірою</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="q13_100" name="q13" value="100">
-                            <label for="q13_100">Дуже великою мірою</label>
-                        </div>
+                    <div class="scale-option">
+                        <input type="radio" id="pb2_100" name="personal_burnout_2" value="100">
+                        <label for="pb2_100">100% Завжди</label>
                     </div>
                 </div>
             </div>
-
-            <!-- КЛІЄНТСЬКЕ ВИГОРАННЯ (Client-related Burnout) -->
-            <div class="section">
-                <div class="section-title">Розділ 3: Вигорання, пов'язане з пацієнтами</div>
-
-                <div class="question">
-                    <div class="question-text">14. Чи знаходите ви важким працювати з пацієнтами?</div>
-                    <div class="options">
-                        <div class="option">
-                            <input type="radio" id="q14_0" name="q14" value="0" required>
-                            <label for="q14_0">Дуже малою мірою</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="q14_25" name="q14" value="25">
-                            <label for="q14_25">Малою мірою</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="q14_50" name="q14" value="50">
-                            <label for="q14_50">Певною мірою</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="q14_75" name="q14" value="75">
-                            <label for="q14_75">Значною мірою</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="q14_100" name="q14" value="100">
-                            <label for="q14_100">Дуже великою мірою</label>
-                        </div>
+            
+            <div class="scale-question">
+                <div class="scale-question-text">3. Як часто ви емоційно виснажені? <span class="required">*</span></div>
+                <div class="scale-options">
+                    <div class="scale-option">
+                        <input type="radio" id="pb3_0" name="personal_burnout_3" value="0" required>
+                        <label for="pb3_0">0% Ніколи/Майже ніколи</label>
                     </div>
-                </div>
-
-                <div class="question">
-                    <div class="question-text">15. Чи виснажує вас робота з пацієнтами?</div>
-                    <div class="options">
-                        <div class="option">
-                            <input type="radio" id="q15_0" name="q15" value="0" required>
-                            <label for="q15_0">Дуже малою мірою</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="q15_25" name="q15" value="25">
-                            <label for="q15_25">Малою мірою</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="q15_50" name="q15" value="50">
-                            <label for="q15_50">Певною мірою</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="q15_75" name="q15" value="75">
-                            <label for="q15_75">Значною мірою</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="q15_100" name="q15" value="100">
-                            <label for="q15_100">Дуже великою мірою</label>
-                        </div>
+                    <div class="scale-option">
+                        <input type="radio" id="pb3_25" name="personal_burnout_3" value="25">
+                        <label for="pb3_25">25% Рідко</label>
                     </div>
-                </div>
-
-                <div class="question">
-                    <div class="question-text">16. Чи виникає у вас роздратування при роботі з пацієнтами?</div>
-                    <div class="options">
-                        <div class="option">
-                            <input type="radio" id="q16_0" name="q16" value="0" required>
-                            <label for="q16_0">Дуже малою мірою</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="q16_25" name="q16" value="25">
-                            <label for="q16_25">Малою мірою</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="q16_50" name="q16" value="50">
-                            <label for="q16_50">Певною мірою</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="q16_75" name="q16" value="75">
-                            <label for="q16_75">Значною мірою</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="q16_100" name="q16" value="100">
-                            <label for="q16_100">Дуже великою мірою</label>
-                        </div>
+                    <div class="scale-option">
+                        <input type="radio" id="pb3_50" name="personal_burnout_3" value="50">
+                        <label for="pb3_50">50% Іноді</label>
                     </div>
-                </div>
-
-                <div class="question">
-                    <div class="question-text">17. Чи відчуваєте ви, що віддаєте більше, ніж отримуєте назад при роботі з пацієнтами?</div>
-                    <div class="options">
-                        <div class="option">
-                            <input type="radio" id="q17_0" name="q17" value="0" required>
-                            <label for="q17_0">Дуже малою мірою</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="q17_25" name="q17" value="25">
-                            <label for="q17_25">Малою мірою</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="q17_50" name="q17" value="50">
-                            <label for="q17_50">Певною мірою</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="q17_75" name="q17" value="75">
-                            <label for="q17_75">Значною мірою</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="q17_100" name="q17" value="100">
-                            <label for="q17_100">Дуже великою мірою</label>
-                        </div>
+                    <div class="scale-option">
+                        <input type="radio" id="pb3_75" name="personal_burnout_3" value="75">
+                        <label for="pb3_75">75% Часто</label>
                     </div>
-                </div>
-
-                <div class="question">
-                    <div class="question-text">18. Чи втомлені ви від роботи з пацієнтами?</div>
-                    <div class="options">
-                        <div class="option">
-                            <input type="radio" id="q18_0" name="q18" value="0" required>
-                            <label for="q18_0">Дуже малою мірою</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="q18_25" name="q18" value="25">
-                            <label for="q18_25">Малою мірою</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="q18_50" name="q18" value="50">
-                            <label for="q18_50">Певною мірою</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="q18_75" name="q18" value="75">
-                            <label for="q18_75">Значною мірою</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="q18_100" name="q18" value="100">
-                            <label for="q18_100">Дуже великою мірою</label>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="question">
-                    <div class="question-text">19. Чи задаєтеся питанням, як довго ви зможете продовжувати працювати з пацієнтами?</div>
-                    <div class="options">
-                        <div class="option">
-                            <input type="radio" id="q19_0" name="q19" value="0" required>
-                            <label for="q19_0">Дуже малою мірою</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="q19_25" name="q19" value="25">
-                            <label for="q19_25">Малою мірою</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="q19_50" name="q19" value="50">
-                            <label for="q19_50">Певною мірою</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="q19_75" name="q19" value="75">
-                            <label for="q19_75">Значною мірою</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="q19_100" name="q19" value="100">
-                            <label for="q19_100">Дуже великою мірою</label>
-                        </div>
+                    <div class="scale-option">
+                        <input type="radio" id="pb3_100" name="personal_burnout_3" value="100">
+                        <label for="pb3_100">100% Завжди</label>
                     </div>
                 </div>
             </div>
-
-            <div class="error" id="errorMessage"></div>
-
-            <button type="submit" class="submit-btn">Отримати результати</button>
-        </form>
-
-        <div class="results" id="results">
-            <h2>Ваші результати</h2>
-            <div class="result-item">
-                <h4>Особисте вигорання:</h4>
-                <span class="score" id="personalScore">0</span>
-                <span class="interpretation" id="personalInterpretation"></span>
+            
+            <div class="scale-question">
+                <div class="scale-question-text">4. Як часто ви думаєте «Я більше не можу»? <span class="required">*</span></div>
+                <div class="scale-options">
+                    <div class="scale-option">
+                        <input type="radio" id="pb4_0" name="personal_burnout_4" value="0" required>
+                        <label for="pb4_0">0% Ніколи/Майже ніколи</label>
+                    </div>
+                    <div class="scale-option">
+                        <input type="radio" id="pb4_25" name="personal_burnout_4" value="25">
+                        <label for="pb4_25">25% Рідко</label>
+                    </div>
+                    <div class="scale-option">
+                        <input type="radio" id="pb4_50" name="personal_burnout_4" value="50">
+                        <label for="pb4_50">50% Іноді</label>
+                    </div>
+                    <div class="scale-option">
+                        <input type="radio" id="pb4_75" name="personal_burnout_4" value="75">
+                        <label for="pb4_75">75% Часто</label>
+                    </div>
+                    <div class="scale-option">
+                        <input type="radio" id="pb4_100" name="personal_burnout_4" value="100">
+                        <label for="pb4_100">100% Завжди</label>
+                    </div>
+                </div>
             </div>
-            <div class="result-item">
-                <h4>Робоче вигорання:</h4>
-                <span class="score" id="workScore">0</span>
-                <span class="interpretation" id="workInterpretation"></span>
+            
+            <div class="scale-question">
+                <div class="scale-question-text">5. Як часто ви почуваєтеся знесиленим? <span class="required">*</span></div>
+                <div class="scale-options">
+                    <div class="scale-option">
+                        <input type="radio" id="pb5_0" name="personal_burnout_5" value="0" required>
+                        <label for="pb5_0">0% Ніколи/Майже ніколи</label>
+                    </div>
+                    <div class="scale-option">
+                        <input type="radio" id="pb5_25" name="personal_burnout_5" value="25">
+                        <label for="pb5_25">25% Рідко</label>
+                    </div>
+                    <div class="scale-option">
+                        <input type="radio" id="pb5_50" name="personal_burnout_5" value="50">
+                        <label for="pb5_50">50% Іноді</label>
+                    </div>
+                    <div class="scale-option">
+                        <input type="radio" id="pb5_75" name="personal_burnout_5" value="75">
+                        <label for="pb5_75">75% Часто</label>
+                    </div>
+                    <div class="scale-option">
+                        <input type="radio" id="pb5_100" name="personal_burnout_5" value="100">
+                        <label for="pb5_100">100% Завжди</label>
+                    </div>
+                </div>
             </div>
-            <div class="result-item">
-                <h4>Вигорання, пов'язане з пацієнтами:</h4>
-                <span class="score" id="clientScore">0</span>
-                <span class="interpretation" id="clientInterpretation"></span>
+            
+            <div class="scale-question">
+                <div class="scale-question-text">6. Як часто ви відчуваєте слабкість і схильність до хвороб? <span class="required">*</span></div>
+                <div class="scale-options">
+                    <div class="scale-option">
+                        <input type="radio" id="pb6_0" name="personal_burnout_6" value="0" required>
+                        <label for="pb6_0">0% Ніколи/Майже ніколи</label>
+                    </div>
+                    <div class="scale-option">
+                        <input type="radio" id="pb6_25" name="personal_burnout_6" value="25">
+                        <label for="pb6_25">25% Рідко</label>
+                    </div>
+                    <div class="scale-option">
+                        <input type="radio" id="pb6_50" name="personal_burnout_6" value="50">
+                        <label for="pb6_50">50% Іноді</label>
+                    </div>
+                    <div class="scale-option">
+                        <input type="radio" id="pb6_75" name="personal_burnout_6" value="75">
+                        <label for="pb6_75">75% Часто</label>
+                    </div>
+                    <div class="scale-option">
+                        <input type="radio" id="pb6_100" name="personal_burnout_6" value="100">
+                        <label for="pb6_100">100% Завжди</label>
+                    </div>
+                </div>
             </div>
-            <div class="result-item">
-                <h4>Загальний рівень вигорання:</h4>
-                <span class="score" id="totalScore">0</span>
-                <span class="interpretation" id="totalInterpretation"></span>
-            </div>
-            <p style="margin-top: 20px; color: #666; font-style: italic;">
-                ✅ Дякуємо за участь! Ваші відповіді збережено анонімно для наукового дослідження.
-            </p>
         </div>
-
-        <div class="footer">
-            <p>© 2026 Dental Academy. Дослідження професійного вигорання стоматологів України</p>
-            <p>Copenhagen Burnout Inventory (CBI) - валідована методологія</p>
+        
+        <!-- Робоче вигорання -->
+        <div class="section">
+            <h2 class="section-title">Робоче вигорання</h2>
+            
+            <div class="scale-question">
+                <div class="scale-question-text">7. Чи відчуваєте ви знесилення наприкінці робочого дня? <span class="required">*</span></div>
+                <div class="scale-options">
+                    <div class="scale-option">
+                        <input type="radio" id="wb1_0" name="work_burnout_1" value="0" required>
+                        <label for="wb1_0">0% Ніколи/Майже ніколи</label>
+                    </div>
+                    <div class="scale-option">
+                        <input type="radio" id="wb1_25" name="work_burnout_1" value="25">
+                        <label for="wb1_25">25% Рідко</label>
+                    </div>
+                    <div class="scale-option">
+                        <input type="radio" id="wb1_50" name="work_burnout_1" value="50">
+                        <label for="wb1_50">50% Іноді</label>
+                    </div>
+                    <div class="scale-option">
+                        <input type="radio" id="wb1_75" name="work_burnout_1" value="75">
+                        <label for="wb1_75">75% Часто</label>
+                    </div>
+                    <div class="scale-option">
+                        <input type="radio" id="wb1_100" name="work_burnout_1" value="100">
+                        <label for="wb1_100">100% Завжди</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="scale-question">
+                <div class="scale-question-text">8. Чи виснажені ви вранці від думки про ще один день на роботі? <span class="required">*</span></div>
+                <div class="scale-options">
+                    <div class="scale-option">
+                        <input type="radio" id="wb2_0" name="work_burnout_2" value="0" required>
+                        <label for="wb2_0">0% Ніколи/Майже ніколи</label>
+                    </div>
+                    <div class="scale-option">
+                        <input type="radio" id="wb2_25" name="work_burnout_2" value="25">
+                        <label for="wb2_25">25% Рідко</label>
+                    </div>
+                    <div class="scale-option">
+                        <input type="radio" id="wb2_50" name="work_burnout_2" value="50">
+                        <label for="wb2_50">50% Іноді</label>
+                    </div>
+                    <div class="scale-option">
+                        <input type="radio" id="wb2_75" name="work_burnout_2" value="75">
+                        <label for="wb2_75">75% Часто</label>
+                    </div>
+                    <div class="scale-option">
+                        <input type="radio" id="wb2_100" name="work_burnout_2" value="100">
+                        <label for="wb2_100">100% Завжди</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="scale-question">
+                <div class="scale-question-text">9. Чи здається вам, що кожна робоча година вас втомлює? <span class="required">*</span></div>
+                <div class="scale-options">
+                    <div class="scale-option">
+                        <input type="radio" id="wb3_0" name="work_burnout_3" value="0" required>
+                        <label for="wb3_0">0% Ніколи/Майже ніколи</label>
+                    </div>
+                    <div class="scale-option">
+                        <input type="radio" id="wb3_25" name="work_burnout_3" value="25">
+                        <label for="wb3_25">25% Рідко</label>
+                    </div>
+                    <div class="scale-option">
+                        <input type="radio" id="wb3_50" name="work_burnout_3" value="50">
+                        <label for="wb3_50">50% Іноді</label>
+                    </div>
+                    <div class="scale-option">
+                        <input type="radio" id="wb3_75" name="work_burnout_3" value="75">
+                        <label for="wb3_75">75% Часто</label>
+                    </div>
+                    <div class="scale-option">
+                        <input type="radio" id="wb3_100" name="work_burnout_3" value="100">
+                        <label for="wb3_100">100% Завжди</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="scale-question">
+                <div class="scale-question-text">10. Чи вистачає вам енергії на сім'ю та друзів у вільний час? <em>(зворотне кодування)</em> <span class="required">*</span></div>
+                <div class="scale-options">
+                    <div class="scale-option">
+                        <input type="radio" id="wb4_100" name="work_burnout_4" value="100" required>
+                        <label for="wb4_100">0% Ніколи/Майже ніколи</label>
+                    </div>
+                    <div class="scale-option">
+                        <input type="radio" id="wb4_75" name="work_burnout_4" value="75">
+                        <label for="wb4_75">25% Рідко</label>
+                    </div>
+                    <div class="scale-option">
+                        <input type="radio" id="wb4_50" name="work_burnout_4" value="50">
+                        <label for="wb4_50">50% Іноді</label>
+                    </div>
+                    <div class="scale-option">
+                        <input type="radio" id="wb4_25" name="work_burnout_4" value="25">
+                        <label for="wb4_25">75% Часто</label>
+                    </div>
+                    <div class="scale-option">
+                        <input type="radio" id="wb4_0" name="work_burnout_4" value="0">
+                        <label for="wb4_0">100% Завжди</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="scale-question">
+                <div class="scale-question-text">11. Чи емоційно виснажує вас ваша робота? <span class="required">*</span></div>
+                <div class="scale-options">
+                    <div class="scale-option">
+                        <input type="radio" id="wb5_0" name="work_burnout_5" value="0" required>
+                        <label for="wb5_0">0% Ніколи/Майже ніколи</label>
+                    </div>
+                    <div class="scale-option">
+                        <input type="radio" id="wb5_25" name="work_burnout_5" value="25">
+                        <label for="wb5_25">25% Рідко</label>
+                    </div>
+                    <div class="scale-option">
+                        <input type="radio" id="wb5_50" name="work_burnout_5" value="50">
+                        <label for="wb5_50">50% Іноді</label>
+                    </div>
+                    <div class="scale-option">
+                        <input type="radio" id="wb5_75" name="work_burnout_5" value="75">
+                        <label for="wb5_75">75% Часто</label>
+                    </div>
+                    <div class="scale-option">
+                        <input type="radio" id="wb5_100" name="work_burnout_5" value="100">
+                        <label for="wb5_100">100% Завжди</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="scale-question">
+                <div class="scale-question-text">12. Чи розчаровує (фруструє) вас ваша робота? <span class="required">*</span></div>
+                <div class="scale-options">
+                    <div class="scale-option">
+                        <input type="radio" id="wb6_0" name="work_burnout_6" value="0" required>
+                        <label for="wb6_0">0% Ніколи/Майже ніколи</label>
+                    </div>
+                    <div class="scale-option">
+                        <input type="radio" id="wb6_25" name="work_burnout_6" value="25">
+                        <label for="wb6_25">25% Рідко</label>
+                    </div>
+                    <div class="scale-option">
+                        <input type="radio" id="wb6_50" name="work_burnout_6" value="50">
+                        <label for="wb6_50">50% Іноді</label>
+                    </div>
+                    <div class="scale-option">
+                        <input type="radio" id="wb6_75" name="work_burnout_6" value="75">
+                        <label for="wb6_75">75% Часто</label>
+                    </div>
+                    <div class="scale-option">
+                        <input type="radio" id="wb6_100" name="work_burnout_6" value="100">
+                        <label for="wb6_100">100% Завжди</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="scale-question">
+                <div class="scale-question-text">13. Чи відчуваєте ви вигорання через вашу роботу? <span class="required">*</span></div>
+                <div class="scale-options">
+                    <div class="scale-option">
+                        <input type="radio" id="wb7_0" name="work_burnout_7" value="0" required>
+                        <label for="wb7_0">0% Ніколи/Майже ніколи</label>
+                    </div>
+                    <div class="scale-option">
+                        <input type="radio" id="wb7_25" name="work_burnout_7" value="25">
+                        <label for="wb7_25">25% Рідко</label>
+                    </div>
+                    <div class="scale-option">
+                        <input type="radio" id="wb7_50" name="work_burnout_7" value="50">
+                        <label for="wb7_50">50% Іноді</label>
+                    </div>
+                    <div class="scale-option">
+                        <input type="radio" id="wb7_75" name="work_burnout_7" value="75">
+                        <label for="wb7_75">75% Часто</label>
+                    </div>
+                    <div class="scale-option">
+                        <input type="radio" id="wb7_100" name="work_burnout_7" value="100">
+                        <label for="wb7_100">100% Завжди</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Вигорання, пов'язане з клієнтами -->
+        <div class="section">
+            <h2 class="section-title">Вигорання, пов'язане з клієнтами (пацієнтами)</h2>
+            
+            <div class="scale-question">
+                <div class="scale-question-text">14. Чи вважаєте ви, що з клієнтами важко працювати? <span class="required">*</span></div>
+                <div class="scale-options">
+                    <div class="scale-option">
+                        <input type="radio" id="cb1_0" name="client_burnout_1" value="0" required>
+                        <label for="cb1_0">0% У дуже низькій мірі</label>
+                    </div>
+                    <div class="scale-option">
+                        <input type="radio" id="cb1_25" name="client_burnout_1" value="25">
+                        <label for="cb1_25">25% У низькій мірі</label>
+                    </div>
+                    <div class="scale-option">
+                        <input type="radio" id="cb1_50" name="client_burnout_1" value="50">
+                        <label for="cb1_50">50% Певною мірою</label>
+                    </div>
+                    <div class="scale-option">
+                        <input type="radio" id="cb1_75" name="client_burnout_1" value="75">
+                        <label for="cb1_75">75% У високій мірі</label>
+                    </div>
+                    <div class="scale-option">
+                        <input type="radio" id="cb1_100" name="client_burnout_1" value="100">
+                        <label for="cb1_100">100% У дуже високій мірі</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="scale-question">
+                <div class="scale-question-text">15. Чи забирає у вас енергію робота з клієнтами? <span class="required">*</span></div>
+                <div class="scale-options">
+                    <div class="scale-option">
+                        <input type="radio" id="cb2_0" name="client_burnout_2" value="0" required>
+                        <label for="cb2_0">0% У дуже низькій мірі</label>
+                    </div>
+                    <div class="scale-option">
+                        <input type="radio" id="cb2_25" name="client_burnout_2" value="25">
+                        <label for="cb2_25">25% У низькій мірі</label>
+                    </div>
+                    <div class="scale-option">
+                        <input type="radio" id="cb2_50" name="client_burnout_2" value="50">
+                        <label for="cb2_50">50% Певною мірою</label>
+                    </div>
+                    <div class="scale-option">
+                        <input type="radio" id="cb2_75" name="client_burnout_2" value="75">
+                        <label for="cb2_75">75% У високій мірі</label>
+                    </div>
+                    <div class="scale-option">
+                        <input type="radio" id="cb2_100" name="client_burnout_2" value="100">
+                        <label for="cb2_100">100% У дуже високій мірі</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="scale-question">
+                <div class="scale-question-text">16. Чи розчаровує (фруструє) вас робота з клієнтами? <span class="required">*</span></div>
+                <div class="scale-options">
+                    <div class="scale-option">
+                        <input type="radio" id="cb3_0" name="client_burnout_3" value="0" required>
+                        <label for="cb3_0">0% У дуже низькій мірі</label>
+                    </div>
+                    <div class="scale-option">
+                        <input type="radio" id="cb3_25" name="client_burnout_3" value="25">
+                        <label for="cb3_25">25% У низькій мірі</label>
+                    </div>
+                    <div class="scale-option">
+                        <input type="radio" id="cb3_50" name="client_burnout_3" value="50">
+                        <label for="cb3_50">50% Певною мірою</label>
+                    </div>
+                    <div class="scale-option">
+                        <input type="radio" id="cb3_75" name="client_burnout_3" value="75">
+                        <label for="cb3_75">75% У високій мірі</label>
+                    </div>
+                    <div class="scale-option">
+                        <input type="radio" id="cb3_100" name="client_burnout_3" value="100">
+                        <label for="cb3_100">100% У дуже високій мірі</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="scale-question">
+                <div class="scale-question-text">17. Чи відчуваєте ви, що віддаєте більше, ніж отримуєте, коли працюєте з клієнтами? <span class="required">*</span></div>
+                <div class="scale-options">
+                    <div class="scale-option">
+                        <input type="radio" id="cb4_0" name="client_burnout_4" value="0" required>
+                        <label for="cb4_0">0% У дуже низькій мірі</label>
+                    </div>
+                    <div class="scale-option">
+                        <input type="radio" id="cb4_25" name="client_burnout_4" value="25">
+                        <label for="cb4_25">25% У низькій мірі</label>
+                    </div>
+                    <div class="scale-option">
+                        <input type="radio" id="cb4_50" name="client_burnout_4" value="50">
+                        <label for="cb4_50">50% Певною мірою</label>
+                    </div>
+                    <div class="scale-option">
+                        <input type="radio" id="cb4_75" name="client_burnout_4" value="75">
+                        <label for="cb4_75">75% У високій мірі</label>
+                    </div>
+                    <div class="scale-option">
+                        <input type="radio" id="cb4_100" name="client_burnout_4" value="100">
+                        <label for="cb4_100">100% У дуже високій мірі</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="scale-question">
+                <div class="scale-question-text">18. Чи втомлює вас робота з клієнтами? <span class="required">*</span></div>
+                <div class="scale-options">
+                    <div class="scale-option">
+                        <input type="radio" id="cb5_0" name="client_burnout_5" value="0" required>
+                        <label for="cb5_0">0% Ніколи/Майже ніколи</label>
+                    </div>
+                    <div class="scale-option">
+                        <input type="radio" id="cb5_25" name="client_burnout_5" value="25">
+                        <label for="cb5_25">25% Рідко</label>
+                    </div>
+                    <div class="scale-option">
+                        <input type="radio" id="cb5_50" name="client_burnout_5" value="50">
+                        <label for="cb5_50">50% Іноді</label>
+                    </div>
+                    <div class="scale-option">
+                        <input type="radio" id="cb5_75" name="client_burnout_5" value="75">
+                        <label for="cb5_75">75% Часто</label>
+                    </div>
+                    <div class="scale-option">
+                        <input type="radio" id="cb5_100" name="client_burnout_5" value="100">
+                        <label for="cb5_100">100% Завжди</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="scale-question">
+                <div class="scale-question-text">19. Чи замислюєтесь ви іноді, як довго зможете продовжувати працювати з клієнтами? <span class="required">*</span></div>
+                <div class="scale-options">
+                    <div class="scale-option">
+                        <input type="radio" id="cb6_0" name="client_burnout_6" value="0" required>
+                        <label for="cb6_0">0% Ніколи/Майже ніколи</label>
+                    </div>
+                    <div class="scale-option">
+                        <input type="radio" id="cb6_25" name="client_burnout_6" value="25">
+                        <label for="cb6_25">25% Рідко</label>
+                    </div>
+                    <div class="scale-option">
+                        <input type="radio" id="cb6_50" name="client_burnout_6" value="50">
+                        <label for="cb6_50">50% Іноді</label>
+                    </div>
+                    <div class="scale-option">
+                        <input type="radio" id="cb6_75" name="client_burnout_6" value="75">
+                        <label for="cb6_75">75% Часто</label>
+                    </div>
+                    <div class="scale-option">
+                        <input type="radio" id="cb6_100" name="client_burnout_6" value="100">
+                        <label for="cb6_100">100% Завжди</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="error-message" id="errorMessage"></div>
+        
+        <button type="submit" class="submit-btn">Відправити та отримати результати</button>
+    </form>
+    
+    <div class="results-container" id="resultsContainer">
+        <h2 class="results-title">Ваші результати</h2>
+        
+        <div class="result-item">
+            <div class="result-category">📊 Особисте вигорання</div>
+            <div class="result-score" id="personalScore">--</div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="personalProgress"></div>
+            </div>
+            <div class="result-interpretation" id="personalInterpretation"></div>
+        </div>
+        
+        <div class="result-item">
+            <div class="result-category">💼 Робоче вигорання</div>
+            <div class="result-score" id="workScore">--</div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="workProgress"></div>
+            </div>
+            <div class="result-interpretation" id="workInterpretation"></div>
+        </div>
+        
+        <div class="result-item">
+            <div class="result-category">👥 Вигорання, пов'язане з клієнтами</div>
+            <div class="result-score" id="clientScore">--</div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="clientProgress"></div>
+            </div>
+            <div class="result-interpretation" id="clientInterpretation"></div>
+        </div>
+        
+        <div class="result-item">
+            <div class="result-category">🎯 Загальний показник вигорання</div>
+            <div class="result-score" id="totalScore">--</div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="totalProgress"></div>
+            </div>
+            <div class="result-interpretation" id="totalInterpretation"></div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 30px; font-size: 14px; opacity: 0.9;">
+            <p>Дякуємо за участь у дослідженні! Ваші дані збережено анонімно.</p>
+            <p style="margin-top: 10px;"><strong>Важливо:</strong> Якщо ви відчуваєте високий рівень вигорання, рекомендуємо звернутися до професійного психолога.</p>
         </div>
     </div>
+</div>
 
-    <script>
-        const form = document.getElementById('surveyForm');
-        const progressBar = document.getElementById('progressBar');
-        const results = document.getElementById('results');
-        const errorMessage = document.getElementById('errorMessage');
+<script>
+// Замість цього URL вставте ваш URL з Google Apps Script
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyl2PkaMP3a1Vru6mMNBDV82j1sCAiAuT02hzcb1AkjthEXjj4OOdSP1UEjAKDAkrwq/exec';
 
-        // Google Apps Script URL
-        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyl2PkaMP3a1Vru6mMNBDV82j1sCAiAuT02hzcb1AkjthEXjj4OOdSP1UEjAKDAkrwq/exec';
+function getInterpretation(score) {
+    if (score <= 25) {
+        return {
+            level: 'Низький рівень вигорання',
+            description: 'Ваш рівень вигорання є низьким. Ви добре справляєтесь з робочими навантаженнями та стресом.',
+            color: '#27ae60'
+        };
+    } else if (score <= 50) {
+        return {
+            level: 'Помірний рівень вігорання',
+            description: 'У вас помірний рівень вигорання. Варто приділити увагу профілактиці стресу та відновленню ресурсів.',
+            color: '#f39c12'
+        };
+    } else if (score <= 75) {
+        return {
+            level: 'Високий рівень вигорання',
+            description: 'У вас високий рівень вигорання. Рекомендуємо звернути серйозну увагу на своє самопочуття та розглянути можливість консультації зі спеціалістом.',
+            color: '#e67e22'
+        };
+    } else {
+        return {
+            level: 'Дуже високий рівень вигорання',
+            description: 'У вас дуже високий рівень вигорання. Настійно рекомендуємо звернутися до професійного психолога або психотерапевта.',
+            color: '#e74c3c'
+        };
+    }
+}
 
-        // Прогрес-бар
-        form.addEventListener('change', updateProgress);
-
-        function updateProgress() {
-            const totalQuestions = 19;
-            let answered = 0;
-            for (let i = 1; i <= totalQuestions; i++) {
-                if (document.querySelector(`input[name="q${i}"]:checked`)) {
-                    answered++;
-                }
-            }
-            const progress = (answered / totalQuestions) * 100;
-            progressBar.style.width = progress + '%';
-        }
-
-        function getInterpretation(score) {
-            if (score <= 25) return "Низький рівень вигорання";
-            if (score <= 50) return "Помірний рівень вигорання";
-            if (score <= 75) return "Високий рівень вигорання";
-            return "Дуже високий рівень вигорання";
-        }
-
-        function calculateScores() {
-            // Особисте вигорання (питання 1-6)
-            let personalSum = 0;
-            for (let i = 1; i <= 6; i++) {
-                const value = parseInt(document.querySelector(`input[name="q${i}"]:checked`).value);
-                personalSum += value;
-            }
-            const personalScore = Math.round(personalSum / 6);
-
-            // Робоче вигорання (питання 7-13)
-            // Питання 10 має зворотне кодування (100-значення)
-            let workSum = 0;
-            for (let i = 7; i <= 13; i++) {
-                let value = parseInt(document.querySelector(`input[name="q${i}"]:checked`).value);
-                if (i === 10) {
-                    value = 100 - value; // Зворотне кодування
-                }
-                workSum += value;
-            }
-            const workScore = Math.round(workSum / 7);
-
-            // Клієнтське вигорання (питання 14-19)
-            let clientSum = 0;
-            for (let i = 14; i <= 19; i++) {
-                const value = parseInt(document.querySelector(`input[name="q${i}"]:checked`).value);
-                clientSum += value;
-            }
-            const clientScore = Math.round(clientSum / 6);
-
-            // Загальний бал
-            const totalScore = Math.round((personalScore + workScore + clientScore) / 3);
-
-            return { personalScore, workScore, clientScore, totalScore };
-        }
-
-        form.addEventListener('submit', async function(e) {
-            e.preventDefault();
-
-            // Перевірка, чи всі питання заповнені
-            for (let i = 1; i <= 19; i++) {
-                if (!document.querySelector(`input[name="q${i}"]:checked`)) {
-                    errorMessage.textContent = 'Будь ласка, дайте відповідь на всі питання.';
-                    errorMessage.style.display = 'block';
-                    return;
-                }
-            }
-
-            errorMessage.style.display = 'none';
-
-            // Розрахунок балів
-            const scores = calculateScores();
-
-            // Відображення результатів
-            document.getElementById('personalScore').textContent = scores.personalScore;
-            document.getElementById('personalInterpretation').textContent = getInterpretation(scores.personalScore);
-
-            document.getElementById('workScore').textContent = scores.workScore;
-            document.getElementById('workInterpretation').textContent = getInterpretation(scores.workScore);
-
-            document.getElementById('clientScore').textContent = scores.clientScore;
-            document.getElementById('clientInterpretation').textContent = getInterpretation(scores.clientScore);
-
-            document.getElementById('totalScore').textContent = scores.totalScore;
-            document.getElementById('totalInterpretation').textContent = getInterpretation(scores.totalScore);
-
-            results.style.display = 'block';
-            results.scrollIntoView({ behavior: 'smooth' });
-
-            // Підготовка даних для відправки
-            const formData = new FormData(form);
-            formData.append('personalScore', scores.personalScore);
-            formData.append('workScore', scores.workScore);
-            formData.append('clientScore', scores.clientScore);
-            formData.append('totalScore', scores.totalScore);
-            formData.append('timestamp', new Date().toISOString());
-
-            // Відправка в Google Sheets
-            try {
-                const response = await fetch(GOOGLE_SCRIPT_URL, {
-                    method: 'POST',
-                    body: formData
-                });
-
-                if (!response.ok) {
-                    console.error('Помилка відправки даних');
-                }
-            } catch (error) {
-                console.error('Помилка:', error);
-            }
+document.getElementById('burnoutSurvey').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const errorMessage = document.getElementById('errorMessage');
+    errorMessage.style.display = 'none';
+    
+    // Перевірка згоди
+    if (!document.getElementById('consent').checked) {
+        errorMessage.textContent = 'Будь ласка, підтвердіть вашу згоду на участь у дослідженні.';
+        errorMessage.style.display = 'block';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        return;
+    }
+    
+    const formData = new FormData(this);
+    
+    // Збір даних особистого вигорання
+    const personalBurnout = [];
+    for (let i = 1; i <= 6; i++) {
+        const value = parseInt(formData.get(`personal_burnout_${i}`));
+        personalBurnout.push(value);
+    }
+    
+    // Збір даних робочого вигорання
+    const workBurnout = [];
+    for (let i = 1; i <= 7; i++) {
+        const value = parseInt(formData.get(`work_burnout_${i}`));
+        workBurnout.push(value);
+    }
+    
+    // Збір даних вигорання з клієнтами
+    const clientBurnout = [];
+    for (let i = 1; i <= 6; i++) {
+        const value = parseInt(formData.get(`client_burnout_${i}`));
+        clientBurnout.push(value);
+    }
+    
+    // Розрахунок середніх балів
+    const personalScore = Math.round(personalBurnout.reduce((a, b) => a + b, 0) / personalBurnout.length);
+    const workScore = Math.round(workBurnout.reduce((a, b) => a + b, 0) / workBurnout.length);
+    const clientScore = Math.round(clientBurnout.reduce((a, b) => a + b, 0) / clientBurnout.length);
+    const totalScore = Math.round((personalScore + workScore + clientScore) / 3);
+    
+    // Відображення результатів
+    displayResults(personalScore, workScore, clientScore, totalScore);
+    
+    // Підготовка даних для відправки
+    const dataToSend = {
+        timestamp: new Date().toISOString(),
+        age: formData.get('age'),
+        gender: formData.get('gender'),
+        specialty: formData.get('specialty'),
+        experience: formData.get('experience'),
+        workload: formData.get('workload'),
+        ukraine: formData.get('ukraine'),
+        war_impact: formData.get('war_impact'),
+        change_profession: formData.get('change_profession'),
+        thoughts_change: formData.get('thoughts_change'),
+        satisfied: formData.get('satisfied'),
+        personal_burnout_1: formData.get('personal_burnout_1'),
+        personal_burnout_2: formData.get('personal_burnout_2'),
+        personal_burnout_3: formData.get('personal_burnout_3'),
+        personal_burnout_4: formData.get('personal_burnout_4'),
+        personal_burnout_5: formData.get('personal_burnout_5'),
+        personal_burnout_6: formData.get('personal_burnout_6'),
+        work_burnout_1: formData.get('work_burnout_1'),
+        work_burnout_2: formData.get('work_burnout_2'),
+        work_burnout_3: formData.get('work_burnout_3'),
+        work_burnout_4: formData.get('work_burnout_4'),
+        work_burnout_5: formData.get('work_burnout_5'),
+        work_burnout_6: formData.get('work_burnout_6'),
+        work_burnout_7: formData.get('work_burnout_7'),
+        client_burnout_1: formData.get('client_burnout_1'),
+        client_burnout_2: formData.get('client_burnout_2'),
+        client_burnout_3: formData.get('client_burnout_3'),
+        client_burnout_4: formData.get('client_burnout_4'),
+        client_burnout_5: formData.get('client_burnout_5'),
+        client_burnout_6: formData.get('client_burnout_6'),
+        personal_score: personalScore,
+        work_score: workScore,
+        client_score: clientScore,
+        total_score: totalScore
+    };
+    
+    // Відправка даних на Google Sheets
+    try {
+        const response = await fetch(GOOGLE_SCRIPT_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(dataToSend)
         });
+        
+        console.log('Дані успішно відправлено!');
+    } catch (error) {
+        console.error('Помилка відправки:', error);
+        // Навіть якщо є помилка, показуємо результати
+    }
+    
+    // Прокрутка до результатів
+    document.getElementById('resultsContainer').scrollIntoView({ behavior: 'smooth' });
+});
 
-        // Ініціалізація прогрес-бару
-        updateProgress();
-    </script>
+function displayResults(personal, work, client, total) {
+    const personalInterp = getInterpretation(personal);
+    const workInterp = getInterpretation(work);
+    const clientInterp = getInterpretation(client);
+    const totalInterp = getInterpretation(total);
+    
+    // Особисте вигорання
+    document.getElementById('personalScore').textContent = personal + ' балів';
+    document.getElementById('personalProgress').style.width = personal + '%';
+    document.getElementById('personalInterpretation').innerHTML = `<strong>${personalInterp.level}</strong><br>${personalInterp.description}`;
+    
+    // Робоче вигорання
+    document.getElementById('workScore').textContent = work + ' балів';
+    document.getElementById('workProgress').style.width = work + '%';
+    document.getElementById('workInterpretation').innerHTML = `<strong>${workInterp.level}</strong><br>${workInterp.description}`;
+    
+    // Вигорання з клієнтами
+    document.getElementById('clientScore').textContent = client + ' балів';
+    document.getElementById('clientProgress').style.width = client + '%';
+    document.getElementById('clientInterpretation').innerHTML = `<strong>${clientInterp.level}</strong><br>${clientInterp.description}`;
+    
+    // Загальне вигорання
+    document.getElementById('totalScore').textContent = total + ' балів';
+    document.getElementById('totalProgress').style.width = total + '%';
+    document.getElementById('totalInterpretation').innerHTML = `<strong>${totalInterp.level}</strong><br>${totalInterp.description}`;
+    
+    // Показати контейнер з результатами
+    document.getElementById('resultsContainer').style.display = 'block';
+}
+</script>
+
 </body>
 </html>
